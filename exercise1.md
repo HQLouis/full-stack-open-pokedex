@@ -1,0 +1,7 @@
+Programming with Java
+1.
+For linting common tools are the Checkstyle, SonarLint and PMD. Those tools can help to maintain a good code quality regarding readability and also prevent developer’s mistakes in general. Testing can be done by tools can be used to do unit testing or integration tests, tools are: junit, Mockito, Cucumber. Building the actual java application can be done by Gradle, Apache Maven, Apache Ant.
+2.
+Besides Jenkins and GitHub Actions there are following tools to setup the CI: GitLab, CircleCI, Travis CI, and Bitbucket Pipelines
+3.
+The more suitable setup depends on the traits of the application. A self-hosten setup offers more control and freedom in specific configuration. Hence, when an organisation has the need for a special setup due to requirements such as security, a self-hosten setup might be the right option. The downside of it is, that it takes more effort to setup the infrastructure of the CI, as well as in the maintainance of the CI. Cloud-based CI solutions offer a easy and quick setup of a CI/CD environment, which is easy to scale. But choosing the cloud-based CI comes with less room for custumization. In case the application is a “typical” application, choosing a cloud based setup might be a good decision. Also costs of the CI can play a role when opting for one soltion. Smaller organisations with less builds might more likely opt for a cloud-based solution which is billed by executed builds, and not like the self-hosted one by instance. Another reason for a self-hosted CI are special needs for hardware.
