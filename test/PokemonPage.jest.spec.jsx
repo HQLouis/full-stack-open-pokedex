@@ -6,8 +6,6 @@ import '@testing-library/jest-dom'
 import PokemonPage from '../src/PokemonPage'
 
 import { MemoryRouter } from 'react-router-dom'
-import { expect } from '@playwright/test'
-import { describe } from 'node:test'
 
 jest.mock('axios')
 
