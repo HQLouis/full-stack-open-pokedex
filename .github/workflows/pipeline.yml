@@ -81,7 +81,9 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
-      - name: commit has skip
-        env:
-          SKIP_CI: ${{ toJson(github.event.commits.*.message) }}
-        run: echo contains($SKIP_CI, '#skip')
+      - name: commit has text skip
+        if: ${{ contains(toJson(github.event.commits.*.message), '#skip') }}
+        run: echo "There is a \#skip in the commit message"
+      - name: commit has no text skip
+        if: ${{ !contains(toJson(github.event.commits.*.message), '#skip') }}
+        run: echo "There is no \#skip in the commit message"
