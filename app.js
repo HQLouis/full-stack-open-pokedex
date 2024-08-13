@@ -1,10 +1,11 @@
-const express = require("express");
-const app = express();
+import express from 'express'
+const app = express()
 
 // get the port from env variable
-const PORT = process.env.PORT || 8080;
-app.use(express.static("dist"));
+const PORT = process.env.PORT || 8080
+app.use(express.static('dist'))
 
 app.listen(PORT, () => {
-  console.log(`server started on port ${PORT}`);
-});
+  // eslint-disable-next-line no-console
+  console.log(`server started on port ${PORT}`)
+})
