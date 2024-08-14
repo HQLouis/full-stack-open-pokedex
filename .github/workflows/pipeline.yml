@@ -116,11 +116,11 @@ jobs:
           echo "${{ secrets.DISCORD_WEBHOOK }}"
           echo "${{ vars.DISCORD_WEBHOOK }}"
       - name: Send test notification
-        uses: EDUJOS/ds-webhook@v1.0.0
+        uses: BubbleProd/discord-webhook-notify@v2
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Some Title
+          severity: info
           description: Some Description LNG
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Send success notification
         if: success()
         uses: rjstone/discord-webhook-notify@v1
