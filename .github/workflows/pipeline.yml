@@ -103,3 +103,27 @@ jobs:
       - name: commit has no text skip
         if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
         run: echo "There is no \#skip in the commit message"
+    
+  sending_test_notification:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Send test notification
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          details: LNG This is a test notification
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Send success notification
+        if: success()
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          details: LNG Build succeeded
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Send failure notification
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: warning
+          details: LNG Build failed
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
