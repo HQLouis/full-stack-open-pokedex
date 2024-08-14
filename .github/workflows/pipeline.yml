@@ -108,7 +108,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print all secretes
-        run: echo "${{ toJson(secrets) }}"
+        run: |
+          echo "${{ toJson(secrets) }}"
+          echo "${{ toJson(vars) }}"
       - name: Check if secret is accessible
         run: |
           echo "${{ secrets.DISCORD_WEBHOOK }}"
