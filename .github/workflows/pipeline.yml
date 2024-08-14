@@ -116,7 +116,7 @@ jobs:
           echo "${{ secrets.DISCORD_WEBHOOK }}"
           echo "${{ vars.DISCORD_WEBHOOK }}"
       - name: Send test notification
-        uses: rjstone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1.0.2
         with:
           severity: info
           username: CustomUsername
