@@ -110,7 +110,9 @@ jobs:
       - name: Print all secretes
         run: echo "${{ toJson(secrets) }}"
       - name: Check if secret is accessible
-        run: echo "${{ secrets.DISCORD_WEBHOOK }}"
+        run: |
+          echo "${{ secrets.DISCORD_WEBHOOK }}"
+          echo "${{ vars.DISCORD_WEBHOOK }}"
       - name: Send test notification
         uses: rjstone/discord-webhook-notify@v1
         with:
