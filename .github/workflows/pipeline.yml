@@ -21,7 +21,16 @@ jobs:
       - name: Check style
         run: npm run eslint
       - name: Build
+        id: build
         run: npm run build
+      - name: Send failure notification
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: warning
+          details: Build failed
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        run: echo "Build failed"
       - name: Run tests
         run: npm run test
   test:
@@ -65,6 +74,13 @@ jobs:
         uses: anothrNick/github-tag-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: New version deployed
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          details: New version deployed to production
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+
 
   a_test_job:
     runs-on: ubuntu-20.04
