@@ -28,8 +28,8 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: warning
-          details: Build failed
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          details: Build failed (LNG)
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Run tests
         run: npm run test
   test:
@@ -77,8 +77,8 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
-          details: New version deployed to production
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          details: New version deployed to production (LNG)
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
 
   a_test_job:
@@ -107,23 +107,25 @@ jobs:
   sending_test_notification:
     runs-on: ubuntu-20.04
     steps:
+      - name: Check if secret is accessible
+        run: echo "${{ secrets.DISCORD_WEBHOOK }}"
       - name: Send test notification
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
           details: LNG This is a test notification
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Send success notification
         if: success()
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
           details: LNG Build succeeded
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Send failure notification
         if: failure()
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: warning
           details: LNG Build failed
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
