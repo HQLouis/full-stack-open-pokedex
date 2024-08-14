@@ -30,7 +30,6 @@ jobs:
           severity: warning
           details: Build failed
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        run: echo "Build failed"
       - name: Run tests
         run: npm run test
   test:
