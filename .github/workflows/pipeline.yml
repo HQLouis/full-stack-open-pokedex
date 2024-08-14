@@ -105,8 +105,10 @@ jobs:
         run: echo "There is no \#skip in the commit message"
     
   sending_test_notification:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
+      - name: Print all secretes
+        run: echo "${{ toJson(secrets) }}"
       - name: Check if secret is accessible
         run: echo "${{ secrets.DISCORD_WEBHOOK }}"
       - name: Send test notification
