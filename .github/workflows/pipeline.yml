@@ -119,7 +119,13 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
-          details: LNG This is a test notification
+          username: CustomUsername
+          color: '#ff00aa'
+          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+          description: This is a custom description.
+          details: 'Custom details: Somebody set up us the bomb.'
+          footer: This is a footer.
+          text: This is where text goes.
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Send success notification
         if: success()
