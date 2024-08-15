@@ -105,16 +105,8 @@ jobs:
         run: echo "There is no \#skip in the commit message"
     
   sending_test_notification:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - name: Print all secretes
-        run: |
-          echo "${{ toJson(secrets) }}"
-          echo "${{ toJson(vars) }}"
-      - name: Check if secret is accessible
-        run: |
-          echo "${{ secrets.DISCORD_WEBHOOK }}"
-          echo "${{ vars.DISCORD_WEBHOOK }}"
       - name: Send test notification
         uses: BubbleProd/discord-webhook-notify@v2
         with:
@@ -130,7 +122,7 @@ jobs:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Send failure notification
         if: failure()
-        uses: rjstone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: warning
           details: LNG Build failed
